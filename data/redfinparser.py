@@ -13,7 +13,7 @@ def get_macrotrends(msaid, demographic_df):
 #   Reassign MSA_ID: USA, Chicago, Dallas, Los Angeles, San Francisco
     msaid = msaid.replace('16980','16984').replace('19100','19124').replace('31080','31084').replace('41860','41884')
 
-    with open(os.path.join(path, 'redfindata.csv')) as file:
+    with open(os.path.join(path, 'redfindata_KC.csv')) as file:
         usaid = '1400'
 
         #save file as csv if utf-8 erro
@@ -53,17 +53,18 @@ def get_macrotrends(msaid, demographic_df):
         for i, row in msa_df.iterrows():
             if i ==0:
                 if row['Price Drops Yoy'] > 0:
-                    msa_df.at[i,'Pricedrops_YearChange'] = str(math.floor((row['Price Drops Mom']*100) * 10 ** 2) / 10 ** 2) + '%'
+                    msa_df.at[i,'Pricedrops_YearChange'] = str(math.floor((row['Price Drops Yoy']*100) * 10 ** 2) / 10 ** 2) + '%'
                 else:
                     msa_df.at[i,'Pricedrops_YearChange'] = str(math.floor((row['Price Drops Yoy']*100) * 10 ** 3) / 10 ** 3)[:-1] + '%'
 
                 if row['Price Drops Mom'] > 0:
                     msa_df.at[i,'Pricedrops_MonthChange'] = str(math.floor((row['Price Drops Mom']*100) * 10 ** 2) / 10 ** 2) + '%'
                 else:
-                    msa_df.at[i,'Pricedrops_MonthChange'] = str(math.floor((row['Price Drops Yoy']*100) * 10 ** 3) / 10 ** 3)[:-1] + '%'
+                    msa_df.at[i,'Pricedrops_MonthChange'] = str(math.floor((row['Price Drops Mom']*100) * 10 ** 3) / 10 ** 3)[:-1] + '%'
 
 
 
+                msa_df.at[i,'NewListings_YearChange'] = row['New Listings Yoy']
                 msa_df.at[i,'NewListings_MonthChange'] = row['New Listings Mom']
                 msa_df.at[i,'MedianPrice_YearChange'] = row['Median Sale Price Yoy']
                 msa_df.at[i,'MedianPrice_MonthChange'] = row['Median Sale Price Mom']
