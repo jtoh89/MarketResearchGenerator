@@ -59,10 +59,10 @@ def get_macrotrends(msaid, demographic_df):
                 msa_df.at[i,'MedianPrice_YearChange'] = row['Median Sale Price Yoy']
                 msa_df.at[i,'MedianPrice_MonthChange'] = row['Median Sale Price Mom']
 
-                msa_df.at[i, 'DOM_MonthChange'] = row['Median Dom Mom']
                 msa_df.at[i, 'DOM_YearChange'] = row['Median Dom Yoy']
-                msa_df.at[i,'Mos_MonthChange'] = row['months_of_supply_mom']
+                msa_df.at[i, 'DOM_MonthChange'] = row['Median Dom Mom']
                 msa_df.at[i,'Mos_YearChange'] = row['months_of_supply_yoy']
+                msa_df.at[i,'Mos_MonthChange'] = row['months_of_supply_mom']
 
         msa_df = msa_df.drop(columns=['months_of_supply_mom','months_of_supply_yoy','Price Drops Mom','Price Drops Yoy',
                                       'Median Sale Price Mom','Median Sale Price Yoy','New Listings Mom','New Listings Yoy',
