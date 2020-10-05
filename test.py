@@ -8,7 +8,7 @@ year_to_use = 2020
 # TEST = True
 msaid = '19100'
 
-# demographicdata = pd.DataFrame()
+demographicdata = pd.DataFrame()
 demographicdata = arcgisdata.get_arcgisdata(msaid)
 redfinparser.get_macrotrends(msaid=msaid,demographic_df=demographicdata)
 
