@@ -9,7 +9,7 @@ unemployment_data = get_markettrends_data.get_unemployment_data()
 
 
 market_trends = pd.merge(zillow_data, unemployment_data, how='left', left_on=['Date','Geo_ID'], right_on=['Date','Geo_ID'])
-market_trends = market_trends.drop(columns=['Geo_Name_y','Geo_Name_x']).rename(columns={'RegionName':'Geo_Name'})
+market_trends = market_trends.drop(columns=['Geo_Name_y']).rename(columns={'Geo_Name_x':'Geo_Name'})
 # market_trends.to_excel('test1.xlsx')
 market_trends_msas = market_trends[['Geo_ID', 'Geo_Name']].drop_duplicates()
 

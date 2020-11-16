@@ -53,16 +53,16 @@ def get_zillow_data():
             else:
                 final_df = pd.merge(final_df, combine_df, how='inner', left_on=['Geo_ID','Date'], right_on=['Geo_ID','Date'])
 
-    final_df = final_df.drop(columns=['RegionName_x','RegionName_y'])
+    final_df = final_df.drop(columns=['RegionName_y'])
 
     msaids = get_msaids()
-    common = pd.merge(final_df, msaids, how='inner', left_on=['Geo_ID'], right_on=['Geo_ID'])
+    common = pd.merge(final_df, msaids, how='inner', left_on=['Geo_ID'], right_on=['Geo_ID']).drop(columns=['Geo_Name'])
     missing = final_df[(~final_df.Geo_ID.isin(common.Geo_ID))]
 
     if len(common) != len(msaids):
         print('!!! Mismatch in zillow msaids !!!')
 
-    return common
+    return common.rename(columns={'RegionName_x':'Geo_Name'})
 
 
 
