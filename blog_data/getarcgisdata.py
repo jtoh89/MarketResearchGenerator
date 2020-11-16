@@ -1,12 +1,18 @@
 from arcgis.gis import GIS
 from arcgis.geoenrichment import enrich
-from data.arcgismacrovariables import variables
+from blog_data.arcgismacrovariables import variables
 import json
 import pandas as pd
 from sqlalchemy import create_engine
 import math
+import os
 
 def get_arcgisdata(msaid):
+    owd = os.getcwd()
+    os.chdir(owd)
+    with open("un_pw.json", "r") as file:
+        aws_string = json.load(file)['aws_mysql']
+
     gis = GIS('https://www.arcgis.com', 'arcgis_python', 'P@ssword123')
 
     ##   CALL GEOENRICH API and DROP USELESS FIELDS
@@ -30,7 +36,7 @@ def get_arcgisdata(msaid):
     data = data.drop(columns=['OWNER_CY', 'RENTER_CY', 'RENTER_CY', 'VACANT_CY'])
     data = data.rename(columns=variables)
 
-    with open("./un_pw.json", "r") as file:
+    with open("././un_pw.json", "r") as file:
         aws_string = json.load(file)['aws_mysql']
 
 

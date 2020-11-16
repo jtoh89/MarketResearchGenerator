@@ -7,13 +7,13 @@ import chardet
 import math
 
 #   Redfin Economic Data
-def get_macrotrends(msaid, demographic_df):
+def get_redfin_marketdata(msaid, demographic_df):
     path = os.path.dirname(os.path.abspath(__file__))
 
 #   Reassign MSA_ID: USA, Chicago, Dallas, Los Angeles, San Francisco
     msaid = msaid.replace('16980','16984').replace('19100','19124').replace('31080','31084').replace('41860','41884')
 
-    with open(os.path.join(path, 'redfindata_Dallas.csv')) as file:
+    with open(os.path.join(path, 'redfindata_Atlanta.csv')) as file:
         usaid = '1400'
 
         #save file as csv if utf-8 erro
@@ -61,8 +61,6 @@ def get_macrotrends(msaid, demographic_df):
                     msa_df.at[i,'Pricedrops_MonthChange'] = str(math.floor((row['Price Drops Mom']*100) * 10 ** 2) / 10 ** 2) + '%'
                 else:
                     msa_df.at[i,'Pricedrops_MonthChange'] = str(math.floor((row['Price Drops Mom']*100) * 10 ** 3) / 10 ** 3)[:-1] + '%'
-
-
 
                 msa_df.at[i,'NewListings_YearChange'] = row['New Listings Yoy']
                 msa_df.at[i,'NewListings_MonthChange'] = row['New Listings Mom']

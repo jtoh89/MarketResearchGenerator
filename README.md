@@ -3,5 +3,6 @@
 Libraries:
 -arcgis
 -openpyxl
+-xlrd
 -sqlalchemy
 -pymysql
