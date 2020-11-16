@@ -25,8 +25,6 @@ zillow_missing = market_trends_msas[(~market_trends_msas.Geo_ID.isin(common_msas
 arcgis_missing = population_msas[(~population_msas.Geo_ID.isin(common_msas.Geo_ID))]
 
 
-
-
 if len(common_msas) != len(population_msas) or len(common_msas) != len(market_trends_msas):
     print('MISMATCH')
     sys.exit()
@@ -38,12 +36,4 @@ sql.db_dump_Market_Geo_ID_Lookup(common_msas)
 sql.db_dump_Market_Population_Trends(population_data)
 sql.db_dump_Market_Trends(market_trends)
 
-
-
-
-
-
-
-
-# final_df = pd.merge(df, arcgis_data, how='left', left_on=['Date','Geo_ID'], right_on = ['Date','Geo_ID'])
 
