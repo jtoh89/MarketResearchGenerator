@@ -4,8 +4,8 @@ import datetime
 
 Base = declarative_base()
 
-class Market_Trends(Base):
-    __tablename__ = "Market_Trends"
+class MarketTrends_Trends(Base):
+    __tablename__ = "MarketTrends_Trends"
 
     Geo_ID = Column(String(10), unique=False, primary_key=True)
     Geo_Name = Column(String(50), unique=False)
@@ -16,8 +16,8 @@ class Market_Trends(Base):
     ShareofPriceCuts = Column(Float, unique=False)
 
 
-class Market_Population_Trends(Base):
-    __tablename__ = "Market_Population_Trends"
+class MarketTrends_Population_Trends(Base):
+    __tablename__ = "MarketTrends_Population_Trends"
 
     Geo_ID = Column(String(10), unique=False, primary_key=True)
     Geo_Name = Column(String(50), unique=False)
@@ -25,14 +25,13 @@ class Market_Population_Trends(Base):
     Population = Column(Integer, unique=False)
 
 
-class Market_Geo_ID_Lookup(Base):
-    __tablename__ = "Market_Geo_ID_Lookup"
+class MarketTrends_Geo_ID_Lookup(Base):
+    __tablename__ = "MarketTrends_Geo_ID_Lookup"
 
     Geo_ID = Column(String(10), unique=False, primary_key=True)
     Geo_Name = Column(String(50), unique=False)
 
 
-Market_Geo_ID_Lookup
 class InitiateDeclaratives():
     @staticmethod
     def create_tables(engine_string):

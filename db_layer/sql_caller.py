@@ -24,13 +24,13 @@ class SqlCaller():
             models.InitiateDeclaratives.create_tables(engine_string)
 
     def db_dump_Market_Geo_ID_Lookup(self, df):
-        df.to_sql("Market_Geo_ID_Lookup", if_exists='replace', con=self.engine, index=False)
+        df.to_sql("MarketTrends_Geo_ID_Lookup", if_exists='replace', con=self.engine, index=False)
 
     def db_dump_Market_Trends(self, df):
-        df.to_sql("Market_Trends", if_exists='replace', con=self.engine, index=False)
+        df.to_sql("MarketTrends_Trends", if_exists='replace', con=self.engine, index=False)
 
     def db_dump_Market_Population_Trends(self, df):
-        df.to_sql("Market_Population_Trends", if_exists='replace', con=self.engine, index=False)
+        df.to_sql("MarketTrends_Population_Trends", if_exists='replace', con=self.engine, index=False)
 
     def db_get_Zillow_MSAID_Lookup(self):
         msa_ids = pd.read_sql_query("""select Geo_ID, Zillow_Id from Zillow_MSAID_Lookup""", self.engine)
