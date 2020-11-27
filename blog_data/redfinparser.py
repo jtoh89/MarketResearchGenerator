@@ -13,7 +13,7 @@ def get_redfin_marketdata(msaid, demographic_df):
 #   Reassign MSA_ID: USA, Chicago, Dallas, Los Angeles, San Francisco
     msaid = msaid.replace('16980','16984').replace('19100','19124').replace('31080','31084').replace('41860','41884')
 
-    with open(os.path.join(path, 'redfindata_Atlanta.csv')) as file:
+    with open(os.path.join(path, 'redfindata_Houston.csv')) as file:
         usaid = '1400'
 
         #save file as csv if utf-8 erro
